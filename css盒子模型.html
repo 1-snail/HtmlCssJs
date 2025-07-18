@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css盒子模型</title>
+    <style>
+        .demo{
+            background-color: burlywood;
+            border: 2px solid yellowgreen;
+
+        }
+        .border-demo{
+            display: inline-block;
+            background-color: yellow;
+            border-style: solid dashed dotted double;
+            border-width: 10px 5px 20px 40px;
+            border-color: rebeccapurple red green gray;
+        }
+
+        .father{
+            background-color: aqua;
+            height: 200px;
+        }
+        .left-son{
+            float: left;
+           width: 100px;
+           height: 100px;
+           background-color: yellowgreen;
+        }
+        .right-son{
+            float: right;
+           width: 100px;
+           height: 100px;
+           background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo">哈哈哈</div>
+    <div class="border-demo">哈哈哈</div>
+    <div class="father">
+        <div class="left-son">左浮动</div>
+        <div class="left-son">左浮动</div>
+        <div class="left-son">左浮动</div>
+        <div class="left-son">左浮动</div>
+        <div class="right-son">右浮动</div>
+        <div class="right-son">右浮动</div>
+        <div class="right-son">右浮动</div>
+        <div class="right-son">右浮动</div>
+    </div>
+</body>
+</html>
