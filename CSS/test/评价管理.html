@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>精准营销管理软件 - 客户评价列表</title>
+<style>
+/* 样式与之前界面保持一致 */
+body { font-family: Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+.header { background-color: #28a745; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.header .logo { font-size: 24px; font-weight: bold; }
+.header .user-info { display: flex; align-items: center; }
+.header .user-info span { margin-right: 15px; }
+.header .user-info a { color: white; text-decoration: none; margin-left: 10px; }
+
+.container { display: flex; min-height: calc(100vh - 60px); }
+.sidebar { width: 220px; background-color: #2c3e50; color: white; padding-top: 20px; }
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar ul li a { display: block; padding: 15px 20px; color: white; text-decoration: none; transition: background-color 0.3s ease; }
+.sidebar ul li a:hover, .sidebar ul li.active a { background-color: #34495e; }
+
+.content { flex-grow: 1; padding: 30px; }
+.page-header { margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+.search-filter-area { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; }
+.search-filter-area .form-group { display: inline-block; margin-right: 20px; margin-bottom: 10px; }
+.search-filter-area input, .search-filter-area select { padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; }
+.search-filter-area button { padding: 8px 15px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease; }
+.search-filter-area button:hover { background-color: #0056b3; }
+
+.evaluation-summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 25px; }
+.summary-card { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center; }
+.summary-card h4 { margin-top: 0; color: #555; }
+.summary-card p { font-size: 22px; font-weight: bold; color: #007bff; }
+.summary-card p.rating { color: #ffc107; } /* 星级颜色 */
+
+.data-table-container { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th, .data-table td { border: 1px solid #eee; padding: 12px 15px; text-align: left; }
+.data-table th { background-color: #f8f8f8; font-weight: bold; color: #555; }
+.data-table tbody tr:nth-child(even) { background-color: #f9f9f9; }
+.data-table .action-links a { margin-right: 10px; color: #007bff; text-decoration: none; }
+.data-table .action-links a:hover { text-decoration: underline; }
+
+.pagination { text-align: right; margin-top: 20px; }
+.pagination a, .pagination span { display: inline-block; padding: 8px 12px; margin: 0 4px; border: 1px solid #ddd; border-radius: 4px; text-decoration: none; color: #007bff; }
+.pagination .current { background-color: #007bff; color: white; border-color: #007bff; }
+
+</style>
+</head>
+<body>
+<div class="header">
+    <div class="logo">精准营销管理软件</div>
+    <div class="user-info">
+        <span>欢迎, 管理员!</span>
+        <a href="#">消息 (3)</a>
+        <a href="#">退出</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">仪表盘</a></li>
+            <li><a href="#">资源对接</a></li>
+            <li><a href="#">客户管理</a></li>
+            <li><a href="#">营销管理</a></li>
+            <li><a href="#">业务服务管理</a></li>
+            <li class="active"><a href="#">评价管理</a></li>
+            <li><a href="#">管理员管理</a></li>
+            <li><a href="#">业务数据统计</a></li>
+            <li><a href="#">系统设置</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="page-header">
+            <h2>评价管理 - 客户评价列表</h2>
+        </div>
+
+        <div class="evaluation-summary-cards">
+            <div class="summary-card">
+                <h4>平均星级</h4>
+                <p class="rating">4.5 <span style="font-size: 0.8em; color: #888;">/ 5</span></p>
+            </div>
+            <div class="summary-card">
+                <h4>总评价数</h4>
+                <p>285</p>
+            </div>
+            <div class="summary-card">
+                <h4>好评率</h4>
+                <p>92%</p>
+            </div>
+            <div class="summary-card">
+                <h4>待处理评价</h4>
+                <p style="color: #dc3545;">12</p>
+            </div>
+        </div>
+
+        <div class="search-filter-area">
+            <div class="form-group">
+                <label for="evaluationSearch">关键词:</label>
+                <input type="text" id="evaluationSearch" placeholder="客户名/评价内容">
+            </div>
+            <div class="form-group">
+                <label for="starRating">星级:</label>
+                <select id="starRating">
+                    <option value="">所有星级</option>
+                    <option value="5">★★★★★ (5星)</option>
+                    <option value="4">★★★★☆ (4星)</option>
+                    <option value="3">★★★☆☆ (3星)</option>
+                    <option value="2">★★☆☆☆ (2星)</option>
+                    <option value="1">★☆☆☆☆ (1星)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="evaluationStatus">处理状态:</label>
+                <select id="evaluationStatus">
+                    <option value="">所有状态</option>
+                    <option value="待回复">待回复</option>
+                    <option value="已回复">已回复</option>
+                </select>
+            </div>
+            <button>搜索</button>
+            <button style="background-color: #6c757d;">重置</button>
+        </div>
+
+        <div class="data-table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th>评价ID</th>
+                        <th>客户名称</th>
+                        <th>评价对象</th>
+                        <th>评价内容</th>
+                        <th>星级</th>
+                        <th>提交时间</th>
+                        <th>处理状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>E001</td>
+                        <td>张小明</td>
+                        <td>服务单号 SR20250715003</td>
+                        <td>技术支持很及时，问题解决得很好。</td>
+                        <td>★★★★★</td>
+                        <td>2025-07-16 11:20</td>
+                        <td>已回复</td>
+                        <td class="action-links">
+                            <a href="#">详情</a>
+                            <a href="#">查看回复</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>E002</td>
+                        <td>王丽</td>
+                        <td>精准营销活动 (A001)</td>
+                        <td>活动内容不错，但流程有点复杂。</td>
+                        <td>★★★☆☆</td>
+                        <td>2025-07-17 15:45</td>
+                        <td>待回复</td>
+                        <td class="action-links">
+                            <a href="#">详情</a>
+                            <a href="#">回复/跟进</a>
+                        </td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <a href="#">上一页</a>
+            <a href="#" class="current">1</a>
+            <a href="#">2</a>
+            <a href="#">下一页</a>
+            <span>共 285 条</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

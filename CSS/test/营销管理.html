@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>精准营销管理软件 - 创建营销活动</title>
+<style>
+/* 样式定义：延续基础布局，表单样式 */
+body { font-family: Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+.header { background-color: #28a745; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.header .logo { font-size: 24px; font-weight: bold; }
+.header .user-info { display: flex; align-items: center; }
+.header .user-info span { margin-right: 15px; }
+.header .user-info a { color: white; text-decoration: none; margin-left: 10px; }
+
+.container { display: flex; min-height: calc(100vh - 60px); }
+.sidebar { width: 220px; background-color: #2c3e50; color: white; padding-top: 20px; }
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar ul li a { display: block; padding: 15px 20px; color: white; text-decoration: none; transition: background-color 0.3s ease; }
+.sidebar ul li a:hover, .sidebar ul li.active a { background-color: #34495e; }
+
+.content { flex-grow: 1; padding: 30px; }
+.form-section { background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 20px; }
+.form-section h3 { margin-top: 0; margin-bottom: 25px; color: #333; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #555; }
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: calc(100% - 24px); /* 减去padding和border */
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /* 确保padding和border包含在宽度内 */
+}
+.form-group textarea { resize: vertical; min-height: 80px; }
+
+.button-group { text-align: right; margin-top: 30px; }
+.button-group .btn { padding: 10px 25px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-left: 15px; transition: background-color 0.3s ease; }
+.button-group .btn-primary { background-color: #28a745; color: white; }
+.button-group .btn-primary:hover { background-color: #218838; }
+.button-group .btn-secondary { background-color: #6c757d; color: white; }
+.button-group .btn-secondary:hover { background-color: #5a6268; }
+</style>
+</head>
+<body>
+<div class="header">
+    <div class="logo">精准营销管理软件</div>
+    <div class="user-info">
+        <span>欢迎, 管理员!</span>
+        <a href="#">消息 (3)</a>
+        <a href="#">退出</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">仪表盘</a></li>
+            <li><a href="#">资源对接</a></li>
+            <li><a href="#">客户管理</a></li>
+            <li class="active"><a href="#">营销管理</a></li>
+            <li><a href="#">业务服务管理</a></li>
+            <li><a href="#">评价管理</a></li>
+            <li><a href="#">管理员管理</a></li>
+            <li><a href="#">业务数据统计</a></li>
+            <li><a href="#">系统设置</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>营销管理 - 创建营销活动</h2>
+
+        <form>
+            <div class="form-section">
+                <h3>基本信息</h3>
+                <div class="form-group">
+                    <label for="activityName">活动名称:</label>
+                    <input type="text" id="activityName" placeholder="例如：2025年夏季客户回馈活动">
+                </div>
+                <div class="form-group">
+                    <label for="activityType">活动类型:</label>
+                    <select id="activityType">
+                        <option value="">请选择</option>
+                        <option value="线上推广">线上推广</option>
+                        <option value="线下沙龙">线下沙龙</option>
+                        <option value="邮件营销">邮件营销</option>
+                        <option value="短信营销">短信营销</option>
+                        <option value="社群营销">社群营销</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="activityGoal">活动目标:</label>
+                    <textarea id="activityGoal" placeholder="描述活动期望达成的效果，例如：提升客户活跃度20%"></textarea>
+                </div>
+                <div class="form-group" style="display: flex; gap: 20px;">
+                    <div style="flex: 1;">
+                        <label for="startDate">开始时间:</label>
+                        <input type="date" id="startDate">
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="endDate">结束时间:</label>
+                        <input type="date" id="endDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="budget">预算 (元):</label>
+                    <input type="number" id="budget" min="0" placeholder="请输入活动预算">
+                </div>
+                <div class="form-group">
+                    <label for="responsiblePerson">负责人:</label>
+                    <select id="responsiblePerson">
+                        <option value="">请选择负责人</option>
+                        <option value="user1">李明</option>
+                        <option value="user2">王芳</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>目标客户群</h3>
+                <div class="form-group">
+                    <label for="targetAudienceFilter">客户筛选:</label>
+                    <p>根据客户标签、地域、行业等条件筛选目标客户。</p>
+                    <button class="btn btn-secondary" type="button">配置筛选条件</button>
+                    <button class="btn btn-secondary" type="button" style="margin-left: 15px;">导入客户列表</button>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>营销内容与渠道</h3>
+                <div class="form-group">
+                    <label for="marketingContent">邮件/短信内容:</label>
+                    <textarea id="marketingContent" placeholder="在此处编辑邮件或短信内容"></textarea>
+                    <p style="font-size: 0.9em; color: #888;">支持模板选择和自定义内容</p>
+                </div>
+                <div class="form-group">
+                    <label for="channel">选择投放渠道:</label>
+                    <div>
+                        <input type="checkbox" id="channelEmail" value="email"> <label for="channelEmail">邮件</label>
+                        <input type="checkbox" id="channelSMS" value="sms" style="margin-left: 20px;"> <label for="channelSMS">短信</label>
+                        <input type="checkbox" id="channelWechat" value="wechat" style="margin-left: 20px;"> <label for="channelWechat">微信</label>
+                        </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">保存并发布</button>
+                <button type="button" class="btn btn-secondary">保存草稿</button>
+                <button type="button" class="btn btn-secondary">取消</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

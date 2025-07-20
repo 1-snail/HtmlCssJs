@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>精准营销管理软件 - 系统设置</title>
+<style>
+/* 通用样式，与之前所有界面保持一致 */
+body { font-family: Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+.header { background-color: #28a745; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.header .logo { font-size: 24px; font-weight: bold; }
+.header .user-info { display: flex; align-items: center; }
+.header .user-info span { margin-right: 15px; }
+.header .user-info a { color: white; text-decoration: none; margin-left: 10px; }
+
+.container { display: flex; min-height: calc(100vh - 60px); } /* 减去header高度 */
+.sidebar { width: 220px; background-color: #2c3e50; color: white; padding-top: 20px; }
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.sidebar ul li a { display: block; padding: 15px 20px; color: white; text-decoration: none; transition: background-color 0.3s ease; }
+.sidebar ul li a:hover, .sidebar ul li.active a { background-color: #34495e; }
+
+.content { flex-grow: 1; padding: 30px; }
+.settings-panel { display: flex; background-color: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); min-height: 600px; } /* 确保内容区有足够高度 */
+.settings-menu { width: 200px; border-right: 1px solid #eee; padding-top: 20px; }
+.settings-menu ul { list-style: none; padding: 0; margin: 0; }
+.settings-menu ul li a { display: block; padding: 12px 20px; color: #333; text-decoration: none; border-left: 3px solid transparent; transition: all 0.2s ease; }
+.settings-menu ul li a:hover { background-color: #f0f2f5; }
+.settings-menu ul li.active a { background-color: #f0f2f5; border-left-color: #28a745; font-weight: bold; color: #28a745; }
+
+.settings-content-area { flex-grow: 1; padding: 30px; }
+.settings-content-area h3 { margin-top: 0; margin-bottom: 25px; color: #333; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #555; }
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group select,
+.form-group textarea {
+    width: calc(100% - 24px); /* 减去padding和border */
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /* 确保padding和border包含在宽度内 */
+}
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-group input[type="checkbox"] { margin-right: 8px; }
+.form-group .checkbox-group { display: flex; align-items: center; margin-top: 10px; }
+
+.button-group { text-align: right; margin-top: 30px; }
+.button-group .btn { padding: 10px 25px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; margin-left: 15px; transition: background-color 0.3s ease; }
+.button-group .btn-primary { background-color: #28a745; color: white; }
+.button-group .btn-primary:hover { background-color: #218838; }
+.button-group .btn-secondary { background-color: #6c757d; color: white; }
+.button-group .btn-secondary:hover { background-color: #5a6268; }
+.button-group .btn-danger { background-color: #dc3545; color: white; }
+.button-group .btn-danger:hover { background-color: #c82333; }
+
+hr { border: 0; border-top: 1px solid #eee; margin: 30px 0; }
+</style>
+</head>
+<body>
+<div class="header">
+    <div class="logo">精准营销管理软件</div>
+    <div class="user-info">
+        <span>欢迎, 管理员!</span>
+        <a href="#">消息 (3)</a>
+        <a href="#">退出</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">仪表盘</a></li>
+            <li><a href="#">资源对接</a></li>
+            <li><a href="#">客户管理</a></li>
+            <li><a href="#">营销管理</a></li>
+            <li><a href="#">业务服务管理</a></li>
+            <li><a href="#">评价管理</a></li>
+            <li><a href="#">管理员管理</a></li>
+            <li><a href="#">业务数据统计</a></li>
+            <li class="active"><a href="#">系统设置</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>系统设置</h2>
+
+        <div class="settings-panel">
+            <div class="settings-menu">
+                <ul>
+                    <li class="active" id="menu-general"><a href="#general-settings">基本设置</a></li>
+                    <li id="menu-notification"><a href="#notification-settings">通知设置</a></li>
+                    <li id="menu-data"><a href="#data-management">数据管理</a></li>
+                    <li id="menu-security"><a href="#security-settings">安全设置</a></li>
+                    <li id="menu-integration"><a href="#integration-settings">集成管理</a></li>
+                </ul>
+            </div>
+
+            <div class="settings-content-area">
+                <div id="general-settings-content" class="setting-section" style="display: block;">
+                    <h3>基本设置</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="companyName">公司名称:</label>
+                            <input type="text" id="companyName" value="XYZ 精准营销公司">
+                        </div>
+                        <div class="form-group">
+                            <label for="systemLogo">系统Logo:</label>
+                            <input type="file" id="systemLogo">
+                            <p style="font-size: 0.9em; color: #888; margin-top: 5px;">建议上传 PNG 格式图片，尺寸 150x50px。</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">联系邮箱:</label>
+                            <input type="email" id="contactEmail" value="support@xyzmarketing.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="serviceHotline">服务热线:</label>
+                            <input type="text" id="serviceHotline" value="400-888-6666">
+                        </div>
+                        <div class="button-group">
+                            <button type="submit" class="btn btn-primary">保存设置</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="notification-settings-content" class="setting-section" style="display: none;">
+                    <h3>通知设置</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>新客户注册通知:</label>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="newCustomerEmail" checked> <label for="newCustomerEmail">邮件通知</label>
+                                <input type="checkbox" id="newCustomerSMS" style="margin-left: 20px;"> <label for="newCustomerSMS">短信通知</label>
+                                <input type="checkbox" id="newCustomerInApp" checked style="margin-left: 20px;"> <label for="newCustomerInApp">站内信通知</label>
+                            </div>
+                            <p style="font-size: 0.9em; color: #888; margin-top: 5px;">当有新客户注册时，向指定人员发送通知。</p>
+                        </div>
+                        <div class="form-group">
+                            <label>服务请求状态变更通知:</label>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="serviceUpdateEmail" checked> <label for="serviceUpdateEmail">邮件通知</label>
+                                <input type="checkbox" id="serviceUpdateSMS" checked style="margin-left: 20px;"> <label for="serviceUpdateSMS">短信通知</label>
+                            </div>
+                            <p style="font-size: 0.9em; color: #888; margin-top: 5px;">服务请求状态更新时，通知客户和处理人。</p>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label for="emailTemplate">邮件通知模板 (通用):</label>
+                            <textarea id="emailTemplate" placeholder="在此编辑邮件模板，支持变量 {客户名称}, {服务单号} 等。">尊敬的 {客户名称}，您的服务请求 {服务单号} 状态已更新为 {新状态}。</textarea>
+                            <p style="font-size: 0.9em; color: #888; margin-top: 5px;">配置所有系统邮件通知的通用模板。</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="smsTemplate">短信通知模板 (通用):</label>
+                            <textarea id="smsTemplate" placeholder="在此编辑短信模板，支持变量 {客户名称}, {服务单号} 等。">【营销管理】尊敬的 {客户名称}，您的请求 {服务单号} 已更新为 {新状态}。</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="defaultNotificationReceiver">默认通知接收人:</label>
+                            <select id="defaultNotificationReceiver">
+                                <option value="admin">管理员</option>
+                                <option value="all_sales">所有销售</option>
+                                <option value="customer_service_manager">客服经理</option>
+                            </select>
+                            <p style="font-size: 0.9em; color: #888; margin-top: 5px;">设置特定通知的默认接收角色或人员。</p>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" class="btn btn-primary">保存设置</button>
+                            <button type="button" class="btn btn-secondary">测试发送</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="data-management-content" class="setting-section" style="display: none;">
+                    <h3>数据管理</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>数据备份:</label>
+                            <p style="font-size: 0.9em; color: #888;">定期备份系统数据以防丢失。</p>
+                            <button type="button" class="btn btn-primary">立即手动备份</button>
+                        </div>
+                        <div class="form-group">
+                            <label for="autoBackupFrequency">自动备份频率:</label>
+                            <select id="autoBackupFrequency">
+                                <option value="daily">每日</option>
+                                <option value="weekly" selected>每周</option>
+                                <option value="monthly">每月</option>
+                                <option value="off">不自动备份</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="backupStoragePath">备份文件存储路径:</label>
+                            <input type="text" id="backupStoragePath" value="/data/backup/精准营销">
+                            <p style="font-size: 0.9em; color: #888; margin-top: 5px;">备份文件将存储在此服务器路径下。</p>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label>数据恢复:</label>
+                            <p style="color: #dc3545; font-weight: bold;">警告：数据恢复将覆盖现有数据，请谨慎操作！</p>
+                            <label for="restoreFile">选择备份文件:</label>
+                            <select id="restoreFile">
+                                <option value="">请选择备份文件</option>
+                                <option value="backup_20250720.zip">backup_20250720.zip (2025-07-20 03:00)</option>
+                                <option value="backup_20250713.zip">backup_20250713.zip (2025-07-13 03:00)</option>
+                            </select>
+                            <button type="button" class="btn btn-danger" style="margin-left: 15px;">执行恢复</button>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label>数据清理:</label>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="cleanLogs" checked> <label for="cleanLogs">清理旧日志</label>
+                                <input type="checkbox" id="cleanDeleted" checked style="margin-left: 20px;"> <label for="cleanDeleted">清理已删除数据</label>
+                                <input type="checkbox" id="cleanTemp" style="margin-left: 20px;"> <label for="cleanTemp">清理临时文件</label>
+                            </div>
+                            <label for="cleanRetentionDays" style="margin-top: 15px;">数据保留天数 (小于此日期的数据将被清理):</label>
+                            <input type="number" id="cleanRetentionDays" value="90" min="0" style="width: 80px;"> 天
+                            <p style="font-size: 0.9em; color: #888; margin-top: 5px;">系统将自动清理早于指定天数的数据。</p>
+                            <button type="button" class="btn btn-danger" style="margin-top: 15px;">立即执行清理</button>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" class="btn btn-primary">保存设置</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="security-settings-content" class="setting-section" style="display: none;">
+                    <h3>安全设置</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>密码策略:</label>
+                            <div style="margin-bottom: 10px;">
+                                <label for="minPasswordLength">最小密码长度:</label>
+                                <input type="number" id="minPasswordLength" value="8" min="6" max="32" style="width: 80px;"> 个字符
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="requireUppercase" checked> <label for="requireUppercase">包含大写字母</label>
+                                <input type="checkbox" id="requireLowercase" checked style="margin-left: 20px;"> <label for="requireLowercase">包含小写字母</label>
+                                <input type="checkbox" id="requireNumber" checked style="margin-left: 20px;"> <label for="requireNumber">包含数字</label>
+                                <input type="checkbox" id="requireSpecialChar" style="margin-left: 20px;"> <label for="requireSpecialChar">包含特殊字符</label>
+                            </div>
+                            <div style="margin-top: 15px;">
+                                <label for="passwordExpiryDays">密码有效期:</label>
+                                <input type="number" id="passwordExpiryDays" value="90" min="0" style="width: 80px;"> 天 (0表示永不失效)
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label>登录安全:</label>
+                            <div style="margin-bottom: 10px;">
+                                <label for="maxLoginAttempts">最大登录失败尝试次数:</label>
+                                <input type="number" id="maxLoginAttempts" value="5" min="1" style="width: 80px;"> 次 (超过将锁定账户)
+                            </div>
+                            <div>
+                                <input type="checkbox" id="enableIpWhitelist"> <label for="enableIpWhitelist">启用 IP 白名单</label>
+                                <p style="font-size: 0.9em; color: #888; margin-top: 5px;">仅允许白名单中的 IP 地址登录。</p>
+                                <textarea placeholder="每行一个IP地址，例如：192.168.1.1" style="width: calc(100% - 24px); height: 80px;"></textarea>
+                            </div>
+                            <div style="margin-top: 15px;">
+                                <input type="checkbox" id="forcePasswordChange" checked> <label for="forcePasswordChange">首次登录强制修改密码</label>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label>操作日志:</label>
+                            <div>
+                                <input type="checkbox" id="enableOperationLog" checked> <label for="enableOperationLog">启用用户操作日志记录</label>
+                                <p style="font-size: 0.9em; color: #888; margin-top: 5px;">记录用户的关键操作行为，便于审计和追踪。</p>
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" class="btn btn-primary">保存设置</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="integration-settings-content" class="setting-section" style="display: none;">
+                    <h3>集成管理</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>短信平台集成:</label>
+                            <p style="font-size: 0.9em; color: #888;">配置第三方短信平台，用于短信营销和通知。</p>
+                            <label for="smsProvider">短信服务商:</label>
+                            <select id="smsProvider">
+                                <option value="aliyun">阿里云短信</option>
+                                <option value="tencent">腾讯云短信</option>
+                                <option value="other">其他</option>
+                            </select>
+                            <div style="margin-top: 10px;">
+                                <label for="smsApiKey">API Key:</label>
+                                <input type="text" id="smsApiKey" placeholder="请输入短信平台API Key">
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <label for="smsApiSecret">API Secret:</label>
+                                <input type="password" id="smsApiSecret" placeholder="请输入短信平台API Secret">
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <label for="smsSignature">短信签名:</label>
+                                <input type="text" id="smsSignature" placeholder="例如：【您的公司名称】">
+                            </div>
+                            <button type="button" class="btn btn-secondary" style="margin-top: 15px;">测试短信发送</button>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label>邮件服务集成:</label>
+                            <p style="font-size: 0.9em; color: #888;">配置 SMTP 服务器，用于系统邮件发送。</p>
+                            <label for="smtpHost">SMTP 服务器地址:</label>
+                            <input type="text" id="smtpHost" placeholder="例如：smtp.exmail.qq.com">
+                            <div style="margin-top: 10px;">
+                                <label for="smtpPort">端口:</label>
+                                <input type="number" id="smtpPort" value="465" style="width: 80px;">
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <label for="smtpUsername">用户名:</label>
+                                <input type="text" id="smtpUsername" placeholder="邮箱账号">
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <label for="smtpPassword">密码/授权码:</label>
+                                <input type="password" id="smtpPassword" placeholder="邮箱密码或授权码">
+                            </div>
+                            <button type="button" class="btn btn-secondary" style="margin-top: 15px;">测试邮件发送</button>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label>第三方 CRM/ERP 集成:</label>
+                            <p style="font-size: 0.9em; color: #888;">配置与现有 CRM/ERP 系统的数据对接。</p>
+                            <label for="crmIntegrationStatus">集成状态:</label>
+                            <select id="crmIntegrationStatus">
+                                <option value="disabled">未启用</option>
+                                <option value="enabled">已启用</option>
+                            </select>
+                            <div style="margin-top: 10px;">
+                                <label for="crmApiEndpoint">API Endpoint:</label>
+                                <input type="text" id="crmApiEndpoint" placeholder="例如：https://api.yourcrm.com/v1">
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <label for="crmAuthToken">认证Token:</label>
+                                <input type="text" id="crmAuthToken" placeholder="请输入认证Token">
+                            </div>
+                            <button type="button" class="btn btn-secondary" style="margin-top: 15px;">测试连接</button>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" class="btn btn-primary">保存设置</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuItems = document.querySelectorAll('.settings-menu ul li a');
+        const settingSections = document.querySelectorAll('.setting-section');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault(); // 阻止默认的锚点跳转
+                const targetId = this.getAttribute('href').substring(1) + '-content';
+
+                // 移除所有菜单项的 active 类
+                menuItems.forEach(menu => menu.parentElement.classList.remove('active'));
+                // 给当前点击的菜单项添加 active 类
+                this.parentElement.classList.add('active');
+
+                // 隐藏所有设置内容区
+                settingSections.forEach(section => section.style.display = 'none');
+                // 显示当前点击对应的设置内容区
+                document.getElementById(targetId).style.display = 'block';
+            });
+        });
+    });
+</script>
+</body>
+</html>
