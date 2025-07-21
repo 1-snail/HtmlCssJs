@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>精准营销管理软件 - 登录</title>
+<style>
+/* 保持与管理后台主界面的统一风格 */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* 新的背景渐变，柔和且有层次感 */
+    background: linear-gradient(135deg, #e0f2f7, #c1e4f0, #a2d6e3); /* 浅蓝到中等蓝的柔和渐变 */
+    color: #333; /* 主文本颜色 */
+    overflow: hidden;
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9); /* 白色卡片，带轻微透明度 */
+    backdrop-filter: blur(8px); /* 毛玻璃效果，模糊度适中 */
+    -webkit-backdrop-filter: blur(8px); /* 兼容 Safari */
+    border-radius: 12px; /* 适当的圆角 */
+    padding: 40px 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* 柔和的阴影，略微比纯白版深一点点 */
+    text-align: center;
+    max-width: 420px;
+    width: 90%;
+    /* 登录卡片入场动画 */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    margin-bottom: 25px;
+}
+
+.logo img {
+    width: 70px; /* Logo大小 */
+    height: 70px;
+    border-radius: 50%; /* 圆形Logo */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Logo的细微阴影 */
+}
+
+h1 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+    color: #333; /* 深色标题 */
+}
+
+p.subtitle {
+    font-size: 1.1em;
+    margin-bottom: 35px;
+    color: #555; /* 次要文本颜色 */
+}
+
+.input-group {
+    margin-bottom: 25px;
+    position: relative;
+    text-align: left;
+}
+
+.input-group i { /* 图标样式 */
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888; /* 图标颜色，与主题色协调 */
+    font-size: 1.1em;
+}
+
+.input-group input {
+    width: calc(100% - 70px); /* 减去padding和图标宽度 */
+    padding: 14px 15px 14px 45px; /* 左侧留出图标位置 */
+    border: 1px solid #ddd; /* 细边框 */
+    border-radius: 8px; /* 输入框圆角 */
+    background-color: #fcfcfc; /* 略微浅色背景 */
+    color: #333;
+    font-size: 1em;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input::placeholder {
+    color: #aaa;
+}
+
+.input-group input:focus {
+    border-color: #28a745; /* 焦点时边框变为绿色 */
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.2); /* 柔和的绿色光晕 */
+    background-color: #fff;
+}
+
+.options-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 0.9em;
+}
+
+.remember-me label {
+    color: #555;
+    cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: #28a745; /* 选中颜色与主题色统一 */
+}
+
+.forgot-password a {
+    color: #28a745; /* 链接颜色与主题色统一 */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+    color: #218838; /* 悬停时深一点的绿色 */
+    text-decoration: underline;
+}
+
+.login-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px; /* 按钮圆角 */
+    background-color: #28a745; /* 登录按钮使用主题绿色 */
+    color: #fff;
+    font-size: 1.15em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3); /* 按钮阴影 */
+}
+
+.login-button:hover {
+    background-color: #218838; /* 悬停时深绿色 */
+    transform: translateY(-2px); /* 轻微上浮 */
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4);
+}
+
+.signup-link {
+    margin-top: 25px;
+    font-size: 0.95em;
+    color: #666;
+}
+
+.signup-link a {
+    color: #28a745; /* 注册链接颜色与主题色统一 */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.signup-link a:hover {
+    color: #218838;
+    text-decoration: underline;
+}
+
+.footer-text {
+    position: absolute;
+    bottom: 20px;
+    font-size: 0.8em;
+    color: #888; /* 底部文本颜色 */
+}
+
+/* 引入图标库，例如 Font Awesome */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+</style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- <div class="logo">
+            <img src="https://via.placeholder.com/70/28a745/FFFFFF?text=Logo" alt="公司Logo">
+        </div> -->
+        <h1>欢迎登录</h1>
+        <p class="subtitle">精准营销管理软件</p>
+
+        <form>
+            <div class="input-group">
+                <i class="fas fa-user"></i> <input type="text" placeholder="用户名或邮箱" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i> <input type="password" placeholder="密码" required>
+            </div>
+
+            <div class="options-group">
+                <div class="remember-me">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">记住我</label>
+                </div>
+                <div class="forgot-password">
+                    <a href="#">忘记密码?</a>
+                </div>
+            </div>
+
+            <button type="submit" class="login-button">立即登录</button>
+        </form>
+
+        <div class="signup-link">
+            还没有账户? <a href="#">立即注册</a>
+        </div>
+    </div>
+
+    <div class="footer-text">
+        &copy; 2025 精准营销管理软件. All Rights Reserved.
+    </div>
+</body>
+</html>
